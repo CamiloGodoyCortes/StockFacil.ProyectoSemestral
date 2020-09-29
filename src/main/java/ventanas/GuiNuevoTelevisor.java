@@ -1,7 +1,7 @@
-package Ventanas;
+package ventanas;
 
-import Productos.Televisor;
-import Validar.Validar;
+import productos.Televisor;
+import validar.Validar;
 import archivos.GestorJSONv5;
 import funciones.AlmacenTelevisor;
 import funciones.ProductoTelevisor;

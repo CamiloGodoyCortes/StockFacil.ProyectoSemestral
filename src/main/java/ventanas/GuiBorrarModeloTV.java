@@ -1,7 +1,7 @@
-package Ventanas;
+package ventanas;
 
 import archivos.GestorJSONv5;
-import funciones.AlmacenCelular;
+import funciones.AlmacenTelevisor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
+public class GuiBorrarModeloTV extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
@@ -24,7 +24,7 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
     protected JButton borrarB;
 
 
-    public GuiBorrarModeloCelular(String title) throws IOException {
+    public GuiBorrarModeloTV(String title) throws IOException {
 
         super(title);
         FlowLayout layout = new FlowLayout();
@@ -37,14 +37,14 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
         modeloP = new JPanel();
         modeloLB = new JLabel("Modelos");
         // para el Jlist
-        AlmacenCelular almacenCelular = GestorJSONv5.generarAlmacenCelular(GestorJSONv5.vectorLineasCL());
+        AlmacenTelevisor almacenTV = GestorJSONv5.generarAlmacenTelevisor(GestorJSONv5.vectorLineasTV());
         DefaultListModel listModel = new DefaultListModel();
-        for (int x = 0; x < almacenCelular.productocelus.size(); x++) {
+        for (int x = 0; x < almacenTV.productostv.size(); x++) {
 
-            if (listModel.contains(almacenCelular.productocelus.get(x).getModelo())) {
+            if (listModel.contains(almacenTV.productostv.get(x).getModelo())) {
             } else {
 
-                listModel.addElement(almacenCelular.productocelus.get(x).getModelo());
+                listModel.addElement(almacenTV.productostv.get(x).getModelo());
 
             }
         }
@@ -57,7 +57,7 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
         listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Para saber la cantidad de recetas almacenadas
-        counterLB = new JLabel(String.valueOf(almacenCelular.verCantidadproductosCelular()));
+        counterLB = new JLabel(String.valueOf(almacenTV.verCantidadproductosTelevisor()));
 
 
         //agregar los comportamientos a los obejtos de loa ventana
@@ -86,7 +86,7 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                almacenCelular.productocelus.clear();
+                almacenTV.productostv.clear();
                 setVisible(false);
             }
         });
@@ -109,31 +109,29 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
         }
 
     }
-        private void borrar(int i) throws IOException {
+    private void borrar(int i) throws IOException {
 
-            if (i > -1) {
+        if (i > -1) {
 
-                try{
+            try{
 
-                    AlmacenCelular almacenCelular = new AlmacenCelular();
-                    almacenCelular.productocelus.remove(i);
-                    GestorJSONv5.borrarArchivoCelu(listaProductos.getName());
-                    JOptionPane.showMessageDialog(null, "modelo eliminado exitosamente");
-                    ((DefaultListModel) listaProductos.getModel()).remove(i);
-                    counterLB.setText(String.valueOf(almacenCelular.verCantidadproductosCelular()));
-
-                }
-                catch(IOException e){}
-
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista");
+                AlmacenTelevisor almacenTelevisor = new AlmacenTelevisor();
+                almacenTelevisor.productostv.remove(i);
+                GestorJSONv5.borrarArchivoTV(listaProductos.getName());
+                JOptionPane.showMessageDialog(null, "modelo eliminado exitosamente");
+                ((DefaultListModel) listaProductos.getModel()).remove(i);
+                counterLB.setText(String.valueOf(almacenTelevisor.verCantidadproductosTelevisor()));
 
             }
+            catch(IOException e){}
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista");
 
         }
-
 
     }
 
 
+}

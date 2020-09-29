@@ -1,4 +1,4 @@
-package Ventanas;
+package ventanas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class GuiPrincipalAgregarCantidad extends JFrame implements ActionListener {
+public class GuiPrincipalBorrarModelo extends JFrame implements ActionListener {
     protected JButton TelevisorB;
     protected JButton ComputadorPortatilB;
     protected JButton CelularB;
     protected JPanel botoneraP;
 
-    public GuiPrincipalAgregarCantidad(String title) {
+    public GuiPrincipalBorrarModelo(String title) {
 
         super(title);
         this.setLayout(new FlowLayout());
@@ -48,9 +48,9 @@ public class GuiPrincipalAgregarCantidad extends JFrame implements ActionListene
 
         if (e.getSource() == CelularB) {
 
-            GuiAgregarCantidadCelular ventA = null;
+            GuiBorrarModeloCelular ventA = null;
             try {
-                ventA = new GuiAgregarCantidadCelular("Celular Agregar Stock");
+                ventA = new GuiBorrarModeloCelular("Celular");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -58,9 +58,9 @@ public class GuiPrincipalAgregarCantidad extends JFrame implements ActionListene
 
         }
         if (e.getSource() == TelevisorB) {
-            GuiAgregarCantidadTV ventana = null;
+            GuiBorrarModeloTV ventana = null;
             try {
-                ventana = new GuiAgregarCantidadTV("Televisor Agregar Stock");
+                ventana = new GuiBorrarModeloTV("Televisor");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -68,9 +68,9 @@ public class GuiPrincipalAgregarCantidad extends JFrame implements ActionListene
         }
         if (e.getSource() == ComputadorPortatilB) {
 
-            GuiAgregarCantidadPC ventB = null;
+            GuiBorrarModeloPC ventB = null;
             try {
-                ventB = new GuiAgregarCantidadPC("ComputadorPortatil Agregar Stock");
+                ventB = new GuiBorrarModeloPC("ComputadorPortatil");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }

@@ -1,7 +1,7 @@
-package Ventanas;
+package ventanas;
 
 import archivos.GestorJSONv5;
-import funciones.AlmacenPC;
+import funciones.AlmacenCelular;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class GuiBorrarModeloPC extends JFrame implements ActionListener {
+public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
@@ -22,9 +22,7 @@ public class GuiBorrarModeloPC extends JFrame implements ActionListener {
 
     protected JPanel borrarP;
     protected JButton borrarB;
-
-
-    public GuiBorrarModeloPC(String title) throws IOException {
+    public GuiBorrarModeloCelular(String title) throws IOException {
 
         super(title);
         FlowLayout layout = new FlowLayout();
@@ -37,14 +35,14 @@ public class GuiBorrarModeloPC extends JFrame implements ActionListener {
         modeloP = new JPanel();
         modeloLB = new JLabel("Modelos");
         // para el Jlist
-        AlmacenPC almacenPC = GestorJSONv5.generarAlmacenPC(GestorJSONv5.vectorLineasPC());
+        AlmacenCelular almacenCelular = GestorJSONv5.generarAlmacenCelular(GestorJSONv5.vectorLineasCL());
         DefaultListModel listModel = new DefaultListModel();
-        for (int x = 0; x < almacenPC.productospc.size(); x++) {
+        for (int x = 0; x < almacenCelular.productocelus.size(); x++) {
 
-            if (listModel.contains(almacenPC.productospc.get(x).getModelo())) {
+            if (listModel.contains(almacenCelular.productocelus.get(x).getModelo())) {
             } else {
 
-                listModel.addElement(almacenPC.productospc.get(x).getModelo());
+                listModel.addElement(almacenCelular.productocelus.get(x).getModelo());
 
             }
         }
@@ -57,7 +55,7 @@ public class GuiBorrarModeloPC extends JFrame implements ActionListener {
         listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Para saber la cantidad de recetas almacenadas
-        counterLB = new JLabel(String.valueOf(almacenPC.verCantidadproductosPC()));
+        counterLB = new JLabel(String.valueOf(almacenCelular.verCantidadproductosCelular()));
 
 
         //agregar los comportamientos a los obejtos de loa ventana
@@ -86,7 +84,7 @@ public class GuiBorrarModeloPC extends JFrame implements ActionListener {
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                almacenPC.productospc.clear();
+                almacenCelular.productocelus.clear();
                 setVisible(false);
             }
         });
@@ -109,29 +107,31 @@ public class GuiBorrarModeloPC extends JFrame implements ActionListener {
         }
 
     }
-    private void borrar(int i) throws IOException {
+        private void borrar(int i) throws IOException {
 
-        if (i > -1) {
+            if (i > -1) {
 
-            try{
+                try{
 
-                AlmacenPC almacenPC = new AlmacenPC();
-                almacenPC.productospc.remove(i);
-                GestorJSONv5.borrarArchivoPC(listaProductos.getName());
-                JOptionPane.showMessageDialog(null, "modelo eliminado exitosamente");
-                ((DefaultListModel) listaProductos.getModel()).remove(i);
-                counterLB.setText(String.valueOf(almacenPC.verCantidadproductosPC()));
+                    AlmacenCelular almacenCelular = new AlmacenCelular();
+                    almacenCelular.productocelus.remove(i);
+                    GestorJSONv5.borrarArchivoCelu(listaProductos.getName());
+                    JOptionPane.showMessageDialog(null, "modelo eliminado exitosamente");
+                    ((DefaultListModel) listaProductos.getModel()).remove(i);
+                    counterLB.setText(String.valueOf(almacenCelular.verCantidadproductosCelular()));
+
+                }
+                catch(IOException e){}
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista");
 
             }
-            catch(IOException e){}
-
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista");
 
         }
+
 
     }
 
 
-}

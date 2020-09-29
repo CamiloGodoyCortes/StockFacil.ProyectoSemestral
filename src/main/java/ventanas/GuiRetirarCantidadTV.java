@@ -1,6 +1,6 @@
-package Ventanas;
+package ventanas;
 
-import Validar.Validar;
+import validar.Validar;
 import archivos.GestorJSONv5;
 import funciones.AlmacenTelevisor;
 import funciones.ProductoTelevisor;
@@ -138,7 +138,7 @@ public class GuiRetirarCantidadTV extends JFrame implements ActionListener {
             if (indice > -1) {
                 Validar validar=new Validar();
                 if ((validar.validarNumero(agregarTF.getText()))==true) {
-                    if ((validar.CantidadError(agregarTF.getText(), almacenTelevisor.productostv.get(indice).getCantidad()))==true) {
+                    if ((validar.cantidadError(agregarTF.getText(), almacenTelevisor.productostv.get(indice).getCantidad()))==true) {
                         almacenTelevisor.productostv.get(indice).restarProducto(Integer.parseInt(agregarTF.getText()));
                         ;
                         try {

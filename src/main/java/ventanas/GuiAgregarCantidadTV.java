@@ -1,9 +1,9 @@
-package Ventanas;
+package ventanas;
 
-import Validar.Validar;
+import validar.Validar;
 import archivos.GestorJSONv5;
-import funciones.AlmacenPC;
-import funciones.ProductoPC;
+import funciones.AlmacenTelevisor;
+import funciones.ProductoTelevisor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
+public class GuiAgregarCantidadTV extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
@@ -21,7 +21,6 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
     protected JTextArea area;
     protected JScrollPane areaScrollPane;
 
-    protected JList listaTipo;
     protected JList listaProductos;
     protected JLabel counterLB;
     protected JLabel modeloLB;
@@ -33,9 +32,10 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
 
     protected JPanel agregarP;
     protected JTextField agregarTF;
+    protected JLabel agregarLB;
     protected JButton agregarB;
 
-    public GuiRetirarCantidadPC(String title) throws IOException {
+    public GuiAgregarCantidadTV(String title) throws IOException {
 
         super(title);
         FlowLayout layout = new FlowLayout();
@@ -48,14 +48,14 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
         modeloP = new JPanel();
         modeloLB = new JLabel("Modelos");
         // para el Jlist
-        AlmacenPC almacenPC = GestorJSONv5.generarAlmacenPC(GestorJSONv5.vectorLineasPC());
+        AlmacenTelevisor almacenTelevisor = GestorJSONv5.generarAlmacenTelevisor(GestorJSONv5.vectorLineasTV());
         DefaultListModel listModel = new DefaultListModel();
-        for (int x = 0; x < almacenPC.productospc.size(); x++) {
+        for (int x = 0; x < almacenTelevisor.productostv.size(); x++) {
 
-            if (listModel.contains(almacenPC.productospc.get(x).getModelo())) {
+            if (listModel.contains(almacenTelevisor.productostv.get(x).getModelo())) {
             } else {
 
-                listModel.addElement(almacenPC.productospc.get(x).getModelo());
+                listModel.addElement(almacenTelevisor.productostv.get(x).getModelo());
 
             }
         }
@@ -75,11 +75,11 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
         areaScrollPane.setPreferredSize(new Dimension(200, 150));
 
         //Para saber la cantidad de recetas almacenadas
-        counterLB = new JLabel(String.valueOf(almacenPC.verCantidadproductosPC()));
+        counterLB = new JLabel(String.valueOf(almacenTelevisor.verCantidadproductosTelevisor()));
 
         //Agregar
         this.agregarP = new JPanel();
-        this.agregarB = new JButton("Retirar");
+        this.agregarB = new JButton("Agregar");
         this.agregarTF = new JTextField(8);
         //agregar los comportamientos a los obejtos de loa ventana
         seleccionar1B.addActionListener(this);
@@ -114,7 +114,7 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                almacenPC.productospc.clear();
+                almacenTelevisor.productostv.clear();
                 setVisible(false);
             }
         });
@@ -133,25 +133,25 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
 
         if (e.getSource() == agregarB) {
             int indice = listaProductos.getSelectedIndex();
-            AlmacenPC almacenPC = new AlmacenPC();
+            AlmacenTelevisor almacenTelevisor = new AlmacenTelevisor();
+            Validar validar = new Validar();
             if (indice > -1) {
-                Validar validar=new Validar();
-                if (((validar.validarNumero(agregarTF.getText()))==true)) {
-                    if ((validar.CantidadError(agregarTF.getText(), almacenPC.productospc.get(indice).getCantidad()))==true){
-                        almacenPC.productospc.get(indice).restarProducto(Integer.parseInt(agregarTF.getText()));
+                if ((validar.validarNumero(agregarTF.getText())) == true) {
+                    almacenTelevisor.productostv.get(indice).agregarProducto(Integer.parseInt(agregarTF.getText()));
+                    ;
                     try {
-                        ProductoPC productoPC = almacenPC.productospc.get(indice);
-                        GestorJSONv5.borrarArchivoPC(almacenPC.productospc.get(indice).getModelo());
-                        GestorJSONv5.agregarProductoArchivoPC(productoPC);
+                        ProductoTelevisor productoTelevisor = almacenTelevisor.productostv.get(indice);
+                        GestorJSONv5.borrarArchivoTV(almacenTelevisor.productostv.get(indice).getModelo());
+                        GestorJSONv5.agregarProductoArchivoTele(productoTelevisor);
 
-                        AlmacenPC AlmacenPCS = GestorJSONv5.generarAlmacenPC(GestorJSONv5.vectorLineasPC());
+                        AlmacenTelevisor almacenTelevisor1 = GestorJSONv5.generarAlmacenTelevisor(GestorJSONv5.vectorLineasTV());
                         DefaultListModel listModel = new DefaultListModel();
-                        for (int x = 0; x < AlmacenPCS.productospc.size(); x++) {
+                        for (int x = 0; x < almacenTelevisor1.productostv.size(); x++) {
 
-                            if (listModel.contains(AlmacenPCS.productospc.get(x).getModelo())) {
+                            if (listModel.contains(almacenTelevisor1.productostv.get(x).getModelo())) {
                             } else {
 
-                                listModel.addElement(AlmacenPCS.productospc.get(x).getModelo());
+                                listModel.addElement(almacenTelevisor1.productostv.get(x).getModelo());
 
                             }
                         }
@@ -159,15 +159,10 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
                     } catch (IOException ex) {
                         //error
                     }
-                     }else{
-                            JOptionPane.showMessageDialog(null, "Ingrese un nuemro menor o igual al que se encuentra en stock", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                    }
-                    }else {
-                        JOptionPane.showMessageDialog(null, "Ingrese solo nuemeros enteros y positivos", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese solo nuemeros enteros y positivos", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -178,9 +173,9 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
 
         try {
 
-            AlmacenPC almacenPC = new AlmacenPC();
+            AlmacenTelevisor almacenTelevisor = new AlmacenTelevisor();
             String saltoLinea = System.getProperty("line.separator");
-            area.setText("Los datos de celular son:" + saltoLinea + almacenPC.productospc.get(i).toString());
+            area.setText("Los datos de celular son:" + saltoLinea + almacenTelevisor.productostv.get(i).toString());
 
         } catch (Exception e) {
 
@@ -189,8 +184,5 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
         }
 
     }
-
-
 }
-
 

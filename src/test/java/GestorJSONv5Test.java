@@ -1,6 +1,6 @@
-import Productos.Celular;
-import Productos.ComputadorPortatil;
-import Productos.Televisor;
+import productos.Celular;
+import productos.ComputadorPortatil;
+import productos.Televisor;
 import archivos.GestorJSONv5;
 import funciones.ProductoCelular;
 import funciones.ProductoPC;

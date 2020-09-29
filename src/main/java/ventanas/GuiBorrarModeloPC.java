@@ -1,7 +1,7 @@
-package Ventanas;
+package ventanas;
 
 import archivos.GestorJSONv5;
-import funciones.AlmacenTelevisor;
+import funciones.AlmacenPC;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class GuiBorrarModeloTV extends JFrame implements ActionListener {
+public class GuiBorrarModeloPC extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
@@ -24,7 +24,7 @@ public class GuiBorrarModeloTV extends JFrame implements ActionListener {
     protected JButton borrarB;
 
 
-    public GuiBorrarModeloTV(String title) throws IOException {
+    public GuiBorrarModeloPC(String title) throws IOException {
 
         super(title);
         FlowLayout layout = new FlowLayout();
@@ -37,14 +37,14 @@ public class GuiBorrarModeloTV extends JFrame implements ActionListener {
         modeloP = new JPanel();
         modeloLB = new JLabel("Modelos");
         // para el Jlist
-        AlmacenTelevisor almacenTV = GestorJSONv5.generarAlmacenTelevisor(GestorJSONv5.vectorLineasTV());
+        AlmacenPC almacenPC = GestorJSONv5.generarAlmacenPC(GestorJSONv5.vectorLineasPC());
         DefaultListModel listModel = new DefaultListModel();
-        for (int x = 0; x < almacenTV.productostv.size(); x++) {
+        for (int x = 0; x < almacenPC.productospc.size(); x++) {
 
-            if (listModel.contains(almacenTV.productostv.get(x).getModelo())) {
+            if (listModel.contains(almacenPC.productospc.get(x).getModelo())) {
             } else {
 
-                listModel.addElement(almacenTV.productostv.get(x).getModelo());
+                listModel.addElement(almacenPC.productospc.get(x).getModelo());
 
             }
         }
@@ -57,7 +57,7 @@ public class GuiBorrarModeloTV extends JFrame implements ActionListener {
         listaProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         //Para saber la cantidad de recetas almacenadas
-        counterLB = new JLabel(String.valueOf(almacenTV.verCantidadproductosTelevisor()));
+        counterLB = new JLabel(String.valueOf(almacenPC.verCantidadproductosPC()));
 
 
         //agregar los comportamientos a los obejtos de loa ventana
@@ -86,7 +86,7 @@ public class GuiBorrarModeloTV extends JFrame implements ActionListener {
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                almacenTV.productostv.clear();
+                almacenPC.productospc.clear();
                 setVisible(false);
             }
         });
@@ -115,12 +115,12 @@ public class GuiBorrarModeloTV extends JFrame implements ActionListener {
 
             try{
 
-                AlmacenTelevisor almacenTelevisor = new AlmacenTelevisor();
-                almacenTelevisor.productostv.remove(i);
-                GestorJSONv5.borrarArchivoTV(listaProductos.getName());
+                AlmacenPC almacenPC = new AlmacenPC();
+                almacenPC.productospc.remove(i);
+                GestorJSONv5.borrarArchivoPC(listaProductos.getName());
                 JOptionPane.showMessageDialog(null, "modelo eliminado exitosamente");
                 ((DefaultListModel) listaProductos.getModel()).remove(i);
-                counterLB.setText(String.valueOf(almacenTelevisor.verCantidadproductosTelevisor()));
+                counterLB.setText(String.valueOf(almacenPC.verCantidadproductosPC()));
 
             }
             catch(IOException e){}

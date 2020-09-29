@@ -1,11 +1,9 @@
-package Productos;
+package productos;
 
-public class ComputadorPortatil {
+public class Celular {
     /** atributos */
     private String marca;
     private String color;
-
-
 
     /**getter and setter*/
     public String getMarca() {
@@ -17,7 +15,6 @@ public class ComputadorPortatil {
     public String getColor() {
         return color;
     }
-    public void setColor(String color) {
-        this.color = color;
-    }
+    public void setColor(String color) { this.color = color;}
 }
+

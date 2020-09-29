@@ -1,4 +1,4 @@
-package Ventanas;
+package ventanas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class GuiPrincipalRetirarCantidad extends JFrame implements ActionListener {
+public class GuiPrincipalAgregarCantidad extends JFrame implements ActionListener {
     protected JButton TelevisorB;
     protected JButton ComputadorPortatilB;
     protected JButton CelularB;
     protected JPanel botoneraP;
 
-    public GuiPrincipalRetirarCantidad(String title) {
+    public GuiPrincipalAgregarCantidad(String title) {
 
         super(title);
         this.setLayout(new FlowLayout());
@@ -48,9 +48,9 @@ public class GuiPrincipalRetirarCantidad extends JFrame implements ActionListene
 
         if (e.getSource() == CelularB) {
 
-            GuiRetirarCantidadCelular ventA = null;
+            GuiAgregarCantidadCelular ventA = null;
             try {
-                ventA = new GuiRetirarCantidadCelular("Celular");
+                ventA = new GuiAgregarCantidadCelular("Celular Agregar Stock");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -58,9 +58,9 @@ public class GuiPrincipalRetirarCantidad extends JFrame implements ActionListene
 
         }
         if (e.getSource() == TelevisorB) {
-            GuiRetirarCantidadTV ventana = null;
+            GuiAgregarCantidadTV ventana = null;
             try {
-                ventana = new GuiRetirarCantidadTV("Televisor");
+                ventana = new GuiAgregarCantidadTV("Televisor Agregar Stock");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -68,9 +68,9 @@ public class GuiPrincipalRetirarCantidad extends JFrame implements ActionListene
         }
         if (e.getSource() == ComputadorPortatilB) {
 
-            GuiRetirarCantidadPC ventB = null;
+            GuiAgregarCantidadPC ventB = null;
             try {
-                ventB = new GuiRetirarCantidadPC("ComputadorPortatil");
+                ventB = new GuiAgregarCantidadPC("ComputadorPortatil Agregar Stock");
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
@@ -78,4 +78,5 @@ public class GuiPrincipalRetirarCantidad extends JFrame implements ActionListene
         }
     }
 }
+
 

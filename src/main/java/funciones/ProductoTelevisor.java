@@ -1,6 +1,6 @@
 package funciones;
 
-import Productos.Televisor;
+import productos.Televisor;
 
 import java.util.ArrayList;
 

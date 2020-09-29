@@ -1,6 +1,6 @@
-package Ventanas;
+package ventanas;
 
-import Validar.Validar;
+import validar.Validar;
 import archivos.GestorJSONv5;
 import funciones.AlmacenPC;
 import funciones.ProductoPC;
@@ -13,7 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
+public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
@@ -21,6 +21,7 @@ public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
     protected JTextArea area;
     protected JScrollPane areaScrollPane;
 
+    protected JList listaTipo;
     protected JList listaProductos;
     protected JLabel counterLB;
     protected JLabel modeloLB;
@@ -34,7 +35,7 @@ public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
     protected JTextField agregarTF;
     protected JButton agregarB;
 
-    public GuiAgregarCantidadPC(String title) throws IOException {
+    public GuiRetirarCantidadPC(String title) throws IOException {
 
         super(title);
         FlowLayout layout = new FlowLayout();
@@ -78,7 +79,7 @@ public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
 
         //Agregar
         this.agregarP = new JPanel();
-        this.agregarB = new JButton("Agregar");
+        this.agregarB = new JButton("Retirar");
         this.agregarTF = new JTextField(8);
         //agregar los comportamientos a los obejtos de loa ventana
         seleccionar1B.addActionListener(this);
@@ -133,11 +134,11 @@ public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
         if (e.getSource() == agregarB) {
             int indice = listaProductos.getSelectedIndex();
             AlmacenPC almacenPC = new AlmacenPC();
-            Validar validar = new Validar();
             if (indice > -1) {
-                if ((validar.validarNumero(agregarTF.getText()))==true) {
-                    almacenPC.productospc.get(indice).agregarProducto(Integer.parseInt(agregarTF.getText()));
-
+                Validar validar=new Validar();
+                if (((validar.validarNumero(agregarTF.getText()))==true)) {
+                    if ((validar.cantidadError(agregarTF.getText(), almacenPC.productospc.get(indice).getCantidad()))==true){
+                        almacenPC.productospc.get(indice).restarProducto(Integer.parseInt(agregarTF.getText()));
                     try {
                         ProductoPC productoPC = almacenPC.productospc.get(indice);
                         GestorJSONv5.borrarArchivoPC(almacenPC.productospc.get(indice).getModelo());
@@ -158,11 +159,15 @@ public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
                     } catch (IOException ex) {
                         //error
                     }
+                     }else{
+                            JOptionPane.showMessageDialog(null, "Ingrese un nuemro menor o igual al que se encuentra en stock", "Error", JOptionPane.ERROR_MESSAGE);
+                            return;
+                    }
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Ingrese solo nuemeros enteros y positivos", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-                }else {
-                    JOptionPane.showMessageDialog(null, "Ingrese solo nuemeros enteros y positivos", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -187,4 +192,5 @@ public class GuiAgregarCantidadPC extends JFrame implements ActionListener {
 
 
 }
+
 

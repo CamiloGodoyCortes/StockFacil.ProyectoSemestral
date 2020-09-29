@@ -1,6 +1,6 @@
-package Ventanas;
+package ventanas;
 
-import Validar.Validar;
+import validar.Validar;
 import archivos.GestorJSONv5;
 import funciones.AlmacenCelular;
 import funciones.ProductoCelular;
@@ -13,8 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-
-public class GuiAgregarCantidadCelular extends JFrame implements ActionListener {
+public class GuiRetirarCantidadCelular extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
@@ -34,9 +33,10 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
 
     protected JPanel agregarP;
     protected JTextField agregarTF;
+    protected JLabel agregarLB;
     protected JButton agregarB;
 
-    public GuiAgregarCantidadCelular(String title) throws IOException {
+    public GuiRetirarCantidadCelular(String title) throws IOException {
 
         super(title);
         FlowLayout layout = new FlowLayout();
@@ -80,7 +80,7 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
 
         //Agregar
         this.agregarP = new JPanel();
-        this.agregarB = new JButton("Agregar");
+        this.agregarB = new JButton("Retirar");
         this.agregarTF = new JTextField(8);
         //agregar los comportamientos a los obejtos de loa ventana
         seleccionar1B.addActionListener(this);
@@ -135,36 +135,40 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
         if (e.getSource() == agregarB) {
             int indice = listaProductos.getSelectedIndex();
             AlmacenCelular almacenCelular = new AlmacenCelular();
-            Validar validar = new Validar();
             if (indice > -1) {
-                if (validar.validarNumero((agregarTF.getText())) == true) {
-                    almacenCelular.productocelus.get(indice).agregarProducto(Integer.parseInt(agregarTF.getText()));
+                Validar validar=new Validar();
+                if ((validar.validarNumero(agregarTF.getText())) == true) {
+                    if ((validar.cantidadError(agregarTF.getText(), almacenCelular.productocelus.get(indice).getCantidad())) == true) {
+                        almacenCelular.productocelus.get(indice).restarProducto(Integer.parseInt(agregarTF.getText()));
+                        try {
+                            ProductoCelular productocelular = almacenCelular.productocelus.get(indice);
+                            GestorJSONv5.borrarArchivoCelu(almacenCelular.productocelus.get(indice).getModelo());
+                            GestorJSONv5.agregarProductoArchivoCelu(productocelular);
 
-                    try {
-                        ProductoCelular productocelular = almacenCelular.productocelus.get(indice);
-                        GestorJSONv5.borrarArchivoCelu(almacenCelular.productocelus.get(indice).getModelo());
-                        GestorJSONv5.agregarProductoArchivoCelu(productocelular);
+                            AlmacenCelular almacenCelulars = GestorJSONv5.generarAlmacenCelular(GestorJSONv5.vectorLineasCL());
+                            DefaultListModel listModel = new DefaultListModel();
+                            for (int x = 0; x < almacenCelulars.productocelus.size(); x++) {
 
-                        AlmacenCelular almacenCelulars = GestorJSONv5.generarAlmacenCelular(GestorJSONv5.vectorLineasCL());
-                        DefaultListModel listModel = new DefaultListModel();
-                        for (int x = 0; x < almacenCelulars.productocelus.size(); x++) {
+                                if (listModel.contains(almacenCelulars.productocelus.get(x).getModelo())) {
+                                } else {
 
-                            if (listModel.contains(almacenCelulars.productocelus.get(x).getModelo())) {
-                            } else {
+                                    listModel.addElement(almacenCelulars.productocelus.get(x).getModelo());
 
-                                listModel.addElement(almacenCelulars.productocelus.get(x).getModelo());
-
+                                }
                             }
+                            listaProductos.setModel(listModel);
+                        } catch (IOException ex) {
+                            //error
                         }
-                        listaProductos.setModel(listModel);
-                    } catch (IOException ex) {
-                        //error
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ingrese un nuemro menor o igual al que se encuentra en stock", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
                     }
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Ingrese solo nuemeros enteros y positivos", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un modelo de la lista", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -186,6 +190,5 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
         }
 
     }
+
 }
-
-

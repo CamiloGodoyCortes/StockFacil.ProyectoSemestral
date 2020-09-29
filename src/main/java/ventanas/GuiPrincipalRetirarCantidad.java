@@ -1,17 +1,18 @@
-package Ventanas;
+package ventanas;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
-public class GuiPrincipalNuevoProducto extends JFrame implements ActionListener {
+public class GuiPrincipalRetirarCantidad extends JFrame implements ActionListener {
     protected JButton TelevisorB;
     protected JButton ComputadorPortatilB;
     protected JButton CelularB;
     protected JPanel botoneraP;
 
-    public GuiPrincipalNuevoProducto(String title) {
+    public GuiPrincipalRetirarCantidad(String title) {
 
         super(title);
         this.setLayout(new FlowLayout());
@@ -47,19 +48,34 @@ public class GuiPrincipalNuevoProducto extends JFrame implements ActionListener 
 
         if (e.getSource() == CelularB) {
 
-                GuiNuevoCelular ventA = new GuiNuevoCelular("Celular");
-                ventA.setVisible(true);
+            GuiRetirarCantidadCelular ventA = null;
+            try {
+                ventA = new GuiRetirarCantidadCelular("Celular");
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+            ventA.setVisible(true);
 
         }
         if (e.getSource() == TelevisorB) {
-            GuiNuevoTelevisor ventana = new GuiNuevoTelevisor("Televisor");
+            GuiRetirarCantidadTV ventana = null;
+            try {
+                ventana = new GuiRetirarCantidadTV("Televisor");
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
             ventana.setVisible(true);
         }
         if (e.getSource() == ComputadorPortatilB) {
 
-                GuiNuevoPC ventB = new GuiNuevoPC("ComputadorPortatil");
-                ventB.setVisible(true);
+            GuiRetirarCantidadPC ventB = null;
+            try {
+                ventB = new GuiRetirarCantidadPC("ComputadorPortatil");
+            } catch (IOException exception) {
+                exception.printStackTrace();
             }
+            ventB.setVisible(true);
         }
     }
+}
 

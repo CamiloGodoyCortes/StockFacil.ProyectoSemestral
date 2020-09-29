@@ -1,6 +1,6 @@
 package funciones;
 
-import Productos.Celular;
+import productos.Celular;
 
 import java.util.ArrayList;
 

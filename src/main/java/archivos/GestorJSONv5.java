@@ -1,8 +1,8 @@
 package archivos;
 
-import Productos.Celular;
-import Productos.ComputadorPortatil;
-import Productos.Televisor;
+import productos.Celular;
+import productos.ComputadorPortatil;
+import productos.Televisor;
 import funciones.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -74,7 +74,7 @@ public class GestorJSONv5 {
      * @param obj   Producto a crear.
      */
 
-    public static void llenarJSONArray(JSONArray array, Object obj) {
+    public static void rellenarJSONArray(JSONArray array, Object obj) {
 
         array.add(obj);
 
@@ -89,11 +89,11 @@ public class GestorJSONv5 {
      */
 
 
-    public static JSONObject encodeTelevisor(JSONArray televisores, String cantidad, String Modelo) {
+    public static JSONObject encodeTelevisor(JSONArray televisores, String cantidad, String modelo) {
         JSONObject obj = new JSONObject();
         obj.put("Televisores", televisores);
         obj.put("cantidad", cantidad);
-        obj.put("Modelo", Modelo);
+        obj.put("Modelo", modelo);
         return obj;
     }
 
@@ -104,11 +104,11 @@ public class GestorJSONv5 {
      * @param cantidad    cantidad que existe de este producto en formato JSON.
      * @return JSONObject ProductoCelulares en formato JSON.
      */
-    public static JSONObject encodeCelular(JSONArray celulares, String cantidad, String Modelo) {
+    public static JSONObject encodeCelular(JSONArray celulares, String cantidad, String modelo) {
         JSONObject obj = new JSONObject();
         obj.put("Celulares", celulares);
         obj.put("cantidad", cantidad);
-        obj.put("Modelo", Modelo);
+        obj.put("Modelo", modelo);
         return obj;
     }
     /**
@@ -118,11 +118,11 @@ public class GestorJSONv5 {
      * @param cantidad    cantidad que existe de este producto en formato JSON.
      * @return JSONObject ProductoTelevisor en formato JSON.
      */
-    public static JSONObject encodePC(JSONArray computadoresPortatiles, String cantidad, String Modelo) {
+    public static JSONObject encodePC(JSONArray computadoresPortatiles, String cantidad, String modelo) {
         JSONObject obj = new JSONObject();
         obj.put("ComputadoresPortatiles", computadoresPortatiles);
         obj.put("cantidad", cantidad);
-        obj.put("Modelo", Modelo);
+        obj.put("Modelo", modelo);
         return obj;
     }
 
@@ -512,8 +512,8 @@ public class GestorJSONv5 {
         String cantidad = String.valueOf(productotelevisor.getCantidad());
 
         for (int x = 0; x < productotelevisor.getTelevisores().size(); x++) {
-            llenarJSONArray(televisor, productotelevisor.getTelevisores().get(x).getMarca());
-            llenarJSONArray(televisor, productotelevisor.getTelevisores().get(x).getTamañoPulgadas());
+            rellenarJSONArray(televisor, productotelevisor.getTelevisores().get(x).getMarca());
+            rellenarJSONArray(televisor, productotelevisor.getTelevisores().get(x).getTamañoPulgadas());
         }
         saveFileTelevisor(encodeTelevisor(televisor, cantidad, modelo));
     }
@@ -531,8 +531,8 @@ public class GestorJSONv5 {
         String cantidad = String.valueOf(productocelu.getCantidad());
 
         for (int x = 0; x < productocelu.getCelulares().size(); x++) {
-            llenarJSONArray(celular, productocelu.getCelulares().get(x).getMarca());
-            llenarJSONArray(celular, productocelu.getCelulares().get(x).getColor());
+            rellenarJSONArray(celular, productocelu.getCelulares().get(x).getMarca());
+            rellenarJSONArray(celular, productocelu.getCelulares().get(x).getColor());
         }
         saveFileCelular(encodeCelular(celular, cantidad, modelo));
     }
@@ -549,8 +549,8 @@ public class GestorJSONv5 {
         String cantidad = String.valueOf(productopc.getCantidad());
 
         for (int x = 0; x < productopc.getComputadoresPortatiles().size(); x++) {
-            llenarJSONArray(computadorportatil, productopc.getComputadoresPortatiles().get(x).getMarca());
-            llenarJSONArray(computadorportatil, productopc.getComputadoresPortatiles().get(x).getColor());
+            rellenarJSONArray(computadorportatil, productopc.getComputadoresPortatiles().get(x).getMarca());
+            rellenarJSONArray(computadorportatil, productopc.getComputadoresPortatiles().get(x).getColor());
         }
         saveFilePC(encodePC(computadorportatil, cantidad, modelo));
     }

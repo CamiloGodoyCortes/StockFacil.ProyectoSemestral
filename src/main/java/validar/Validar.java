@@ -1,4 +1,4 @@
-package Validar;
+package validar;
 
 public class Validar {
     public boolean validarNumero(String cadena) {
@@ -8,7 +8,7 @@ public class Validar {
             return false;
         }
     }
-    public  boolean CantidadError(String cadena, int i) {
+    public  boolean cantidadError(String cadena, int i) {
         if (i < Integer.parseInt(cadena)) {
             return false;
         } else {
@@ -17,9 +17,9 @@ public class Validar {
 
 
     }
-    public  boolean caracteresPermitidos (String string)  {
+    public  boolean caracteresPermitidos (String cadena)  {
 
-        if (!string.matches("[a-zA-Z\\s]+$")) {
+        if (!cadena.matches("[a-zA-Z\\s]+$")) {
             return false;
         }
         else{

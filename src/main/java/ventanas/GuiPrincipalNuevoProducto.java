@@ -1,18 +1,17 @@
-package Ventanas;
+package ventanas;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
-public class GuiPrincipalBorrarModelo extends JFrame implements ActionListener {
+public class GuiPrincipalNuevoProducto extends JFrame implements ActionListener {
     protected JButton TelevisorB;
     protected JButton ComputadorPortatilB;
     protected JButton CelularB;
     protected JPanel botoneraP;
 
-    public GuiPrincipalBorrarModelo(String title) {
+    public GuiPrincipalNuevoProducto(String title) {
 
         super(title);
         this.setLayout(new FlowLayout());
@@ -48,35 +47,19 @@ public class GuiPrincipalBorrarModelo extends JFrame implements ActionListener {
 
         if (e.getSource() == CelularB) {
 
-            GuiBorrarModeloCelular ventA = null;
-            try {
-                ventA = new GuiBorrarModeloCelular("Celular");
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-            ventA.setVisible(true);
+                GuiNuevoCelular ventA = new GuiNuevoCelular("Celular");
+                ventA.setVisible(true);
 
         }
         if (e.getSource() == TelevisorB) {
-            GuiBorrarModeloTV ventana = null;
-            try {
-                ventana = new GuiBorrarModeloTV("Televisor");
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
+            GuiNuevoTelevisor ventana = new GuiNuevoTelevisor("Televisor");
             ventana.setVisible(true);
         }
         if (e.getSource() == ComputadorPortatilB) {
 
-            GuiBorrarModeloPC ventB = null;
-            try {
-                ventB = new GuiBorrarModeloPC("ComputadorPortatil");
-            } catch (IOException exception) {
-                exception.printStackTrace();
+                GuiNuevoPC ventB = new GuiNuevoPC("ComputadorPortatil");
+                ventB.setVisible(true);
             }
-            ventB.setVisible(true);
         }
     }
-}
-
 

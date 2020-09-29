@@ -1,6 +1,6 @@
 package funciones;
 
-import Productos.ComputadorPortatil;
+import productos.ComputadorPortatil;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package Ventanas;
+package ventanas;
 
-import Productos.ComputadorPortatil;
-import Validar.Validar;
+import productos.Celular;
+import validar.Validar;
 import archivos.GestorJSONv5;
-import funciones.AlmacenPC;
-import funciones.ProductoPC;
+import funciones.AlmacenCelular;
+import funciones.ProductoCelular;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class GuiNuevoPC extends JFrame implements ActionListener {
+public class GuiNuevoCelular extends JFrame implements ActionListener {
+
     protected JPanel marcaP;
     protected JLabel marcaLB;
     protected JTextField marcaTF;
@@ -28,9 +29,10 @@ public class GuiNuevoPC extends JFrame implements ActionListener {
 
     protected JPanel guardarP;
     protected JButton guardarB;
-    protected ProductoPC productospc;
 
-    public GuiNuevoPC(String titulo) {
+    protected ProductoCelular productocelu;
+
+    public GuiNuevoCelular(String titulo) {
 
         super(titulo);
         this.setLayout(new FlowLayout());
@@ -46,7 +48,6 @@ public class GuiNuevoPC extends JFrame implements ActionListener {
         colorP = new JPanel();
         colorLB = new JLabel("Color");
         colorTF = new JTextField(10);
-
 
         guardarP = new JPanel();
         guardarB = new JButton("Guardar");
@@ -68,10 +69,12 @@ public class GuiNuevoPC extends JFrame implements ActionListener {
         this.add(guardarP);
 
         guardarB.addActionListener(this);
-        productospc = new ProductoPC();
+
+        productocelu = new ProductoCelular();
+
         //Operaciones por defecto
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(700, 200);
+        setSize(900, 200);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -80,37 +83,37 @@ public class GuiNuevoPC extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == guardarB) {
-            if (e.getSource() == guardarB) {
 
-                if (modeloTF.getText().isEmpty() || marcaTF.getText().isEmpty() || colorTF.getText().isEmpty()) {
+            if (modeloTF.getText().isEmpty() || marcaTF.getText().isEmpty() || colorTF.getText().isEmpty()) {
 
-                    JOptionPane.showMessageDialog(null, "Uno o mas campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Uno o mas campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
 
-                } else {
-                    Validar validar = new Validar();
-                    if (validar.caracteresPermitidos(marcaTF.getText())== true || validar.caracteresPermitidos(colorTF.getText())== true){
-                        ComputadorPortatil pc = new ComputadorPortatil();
-                        pc.setMarca(marcaTF.getText());
-                        pc.setColor(colorTF.getText());
-                        productospc.getComputadoresPortatiles().add(pc);
-                        marcaTF.setText("");
-                        colorTF.setText("");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Caracteres inválidos en marca o color solo se admiten letras", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
+            } else {
+                Validar validar = new Validar();
+                if (validar.caracteresPermitidos(marcaTF.getText())== true && validar.caracteresPermitidos(colorTF.getText())== true){
+                    Celular celular = new Celular();
+                    celular.setMarca(marcaTF.getText());
+                    celular.setColor(colorTF.getText());
+                    productocelu.getCelulares().add(celular);
+                    marcaTF.setText("");
+                    colorTF.setText("");
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Caracteres inválidos en marca o color solo se admiten letras", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                     try {
-                        productospc.setModelo(modeloTF.getText());
-                        AlmacenPC almacenPC = GestorJSONv5.generarAlmacenPC(GestorJSONv5.vectorLineasPC());
+                        productocelu.setModelo(modeloTF.getText());
+                        AlmacenCelular almacencelular = GestorJSONv5.generarAlmacenCelular(GestorJSONv5.vectorLineasCL());
                         boolean existe = false;
 
-                        for (int i = 0; i < almacenPC.productospc.size(); i++) {
+                        for (int i = 0; i < almacencelular.productocelus.size(); i++) {
 
-                            if (productospc.getModelo().equals(almacenPC.productospc.get(i).getModelo())) {
+                            if (productocelu.getModelo().equals(almacencelular.productocelus.get(i).getModelo())) {
 
                                 JOptionPane.showMessageDialog(null, "El modelo ya existe en el inventario", "Error", JOptionPane.WARNING_MESSAGE);
                                 existe = true;
-
 
                             }
                         }
@@ -119,7 +122,7 @@ public class GuiNuevoPC extends JFrame implements ActionListener {
                             return;
                         } else {
                             try {
-                                GestorJSONv5.agregarProductoArchivoPC(this.productospc);
+                                GestorJSONv5.agregarProductoArchivoCelu(this.productocelu);
                                 setVisible(false);
 
                             } catch (IOException e2) {
@@ -132,6 +135,5 @@ public class GuiNuevoPC extends JFrame implements ActionListener {
                 }
             }
         }
-    }
-    }
 
+    }

@@ -1,10 +1,11 @@
-package Ventanas;
+package Main;
 
 import archivos.GestorJSONv5;
+import ventanas.GuiPrincipal;
 
 import java.io.IOException;
 
-public class Principal {
+public class Launcher {
     public static void main (String[]args) throws IOException {
 
         GestorJSONv5.crearAlmacenVacioPC();
@@ -15,3 +16,4 @@ public class Principal {
 
     }
 }
+
