@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GuiPrincipalBorrarModelo extends JFrame implements ActionListener {
-    private JButton TelevisorB;
-    private JButton ComputadorPortatilB;
-    private JButton CelularB;
-    private JPanel botoneraP;
+    protected JButton TelevisorB;
+    protected JButton ComputadorPortatilB;
+    protected JButton CelularB;
+    protected JPanel botoneraP;
 
     public GuiPrincipalBorrarModelo(String title) {
 

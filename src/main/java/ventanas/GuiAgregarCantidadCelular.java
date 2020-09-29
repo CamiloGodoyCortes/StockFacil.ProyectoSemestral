@@ -18,22 +18,24 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
     protected JScrollPane menuScrollPane;
 
 
-    private JPanel areaP;
-    private JTextArea area;
-    private JScrollPane areaScrollPane;
+    protected JPanel areaP;
+    protected JTextArea area;
+    protected JScrollPane areaScrollPane;
 
-    private JList listaProductos;
-    private JLabel counterLB;
-    private JLabel modeloLB;
-    private JPanel modeloP;
-
-    private JPanel seleccionarP;
-    private JButton seleccionarB;
+    protected JList listaTipo;
+    protected JList listaProductos;
+    protected JLabel counterLB;
+    protected JLabel modeloLB;
+    protected JPanel modeloP;
 
 
-    private JPanel agregarP;
-    private JTextField agregarTF;
-    private JButton agregarB;
+    protected JPanel seleccionarP;
+    protected JButton seleccionarB;
+
+
+    protected JPanel agregarP;
+    protected JTextField agregarTF;
+    protected JButton agregarB;
 
     public GuiAgregarCantidadCelular(String title) throws IOException {
 

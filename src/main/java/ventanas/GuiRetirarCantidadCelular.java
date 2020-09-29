@@ -14,17 +14,17 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class GuiRetirarCantidadCelular extends JFrame implements ActionListener {
-    private JScrollPane menuScrollPane;
+    protected JScrollPane menuScrollPane;
 
 
-    private JPanel areaP;
-    private JTextArea area;
-    private JScrollPane areaScrollPane;
+    protected JPanel areaP;
+    protected JTextArea area;
+    protected JScrollPane areaScrollPane;
 
-    private JList listaProductos;
-    private JLabel counterLB;
-    private JLabel modeloLB;
-    private JPanel modeloP;
+    protected JList listaProductos;
+    protected JLabel counterLB;
+    protected JLabel modeloLB;
+    protected JPanel modeloP;
 
     protected JPanel seleccionarP;
     protected JButton seleccionarB;

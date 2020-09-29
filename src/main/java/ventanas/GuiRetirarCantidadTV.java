@@ -15,24 +15,27 @@ import java.io.IOException;
 
 public class GuiRetirarCantidadTV extends JFrame implements ActionListener {
 
-    private JScrollPane menuScrollPane;
+    protected JScrollPane menuScrollPane;
 
-    private JPanel areaP;
-    private JTextArea area;
-    private JScrollPane areaScrollPane;
-
-    private JList listaProductos;
-    private JLabel counterLB;
-    private JLabel modeloLB;
-    private JPanel modeloP;
-
-    private JPanel seleccionarP;
-    private JButton seleccionarB;
+    protected JPanel areaP;
+    protected JTextArea area;
+    protected JScrollPane areaScrollPane;
 
 
-    private JPanel retirarP;
-    private JTextField retirarTF;
-    private JButton retirarB;
+
+    protected JPanel retirarP;
+    protected JTextField retirarTF;
+    protected JButton retirarB;
+
+    protected JList listaProductos;
+    protected JLabel counterLB;
+    protected JLabel modeloLB;
+    protected JPanel modeloP;
+
+    protected JPanel seleccionarP;
+    protected JButton seleccionarB;
+
+
 
     public GuiRetirarCantidadTV(String title) throws IOException {
 

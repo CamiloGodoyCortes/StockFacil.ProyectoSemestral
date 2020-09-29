@@ -14,25 +14,25 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class GuiAgregarCantidadTV extends JFrame implements ActionListener {
-    private JScrollPane menuScrollPane;
+    protected JScrollPane menuScrollPane;
 
 
-    private JPanel areaP;
-    private JTextArea area;
-    private JScrollPane areaScrollPane;
+    protected JPanel areaP;
+    protected JTextArea area;
+    protected JScrollPane areaScrollPane;
 
-    private JList listaProductos;
-    private JLabel counterLB;
-    private JLabel modeloLB;
-    private JPanel modeloP;
+    protected JList listaProductos;
+    protected JLabel counterLB;
+    protected JLabel modeloLB;
+    protected JPanel modeloP;
 
-    private JPanel seleccionar1P;
-    private JButton seleccionar1B;
+    protected JPanel seleccionar1P;
+    protected JButton seleccionar1B;
 
 
-    private JPanel agregarP;
-    private JTextField agregarTF;
-    private JButton agregarB;
+    protected JPanel agregarP;
+    protected JTextField agregarTF;
+    protected JButton agregarB;
 
     public GuiAgregarCantidadTV(String title) throws IOException {
 

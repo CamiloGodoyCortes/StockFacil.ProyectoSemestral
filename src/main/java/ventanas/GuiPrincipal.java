@@ -6,11 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GuiPrincipal extends JFrame implements ActionListener {
-    private JButton AgregarCantidadB;
-    private JButton RetirarCantidadB;
-    private JButton AgregarNuevoProductoB;
-    private JButton BorrarModeloB;
-    private JPanel botoneraP;
+    protected JButton AgregarCantidadB;
+    protected JButton RetirarCantidadB;
+    protected JButton AgregarNuevoProductoB;
+    protected JButton BorrarModeloB;
+    protected JPanel botoneraP;
 
 
     public GuiPrincipal(String title){
