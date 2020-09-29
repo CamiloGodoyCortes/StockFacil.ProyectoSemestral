@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GuiPrincipalNuevoProducto extends JFrame implements ActionListener {
-    protected JButton TelevisorB;
-    protected JButton ComputadorPortatilB;
-    protected JButton CelularB;
-    protected JPanel botoneraP;
+    private JButton TelevisorB;
+    private JButton ComputadorPortatilB;
+    private JButton CelularB;
+    private JPanel botoneraP;
 
     public GuiPrincipalNuevoProducto(String title) {
 

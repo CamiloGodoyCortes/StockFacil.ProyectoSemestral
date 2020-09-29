@@ -14,23 +14,23 @@ import java.io.IOException;
 
 public class GuiNuevoCelular extends JFrame implements ActionListener {
 
-    protected JPanel marcaP;
-    protected JLabel marcaLB;
-    protected JTextField marcaTF;
+    private JPanel marcaP;
+    private JLabel marcaLB;
+    private JTextField marcaTF;
 
-    protected JPanel modeloP;
-    protected JLabel modeloLB;
-    protected JTextField modeloTF;
+    private JPanel modeloP;
+    private JLabel modeloLB;
+    private JTextField modeloTF;
 
-    protected JPanel colorP;
-    protected JLabel colorLB;
-    protected JTextField colorTF;
+    private JPanel colorP;
+    private JLabel colorLB;
+    private JTextField colorTF;
 
 
-    protected JPanel guardarP;
-    protected JButton guardarB;
+    private JPanel guardarP;
+    private JButton guardarB;
 
-    protected ProductoCelular productocelu;
+    private ProductoCelular productocelu;
 
     public GuiNuevoCelular(String titulo) {
 

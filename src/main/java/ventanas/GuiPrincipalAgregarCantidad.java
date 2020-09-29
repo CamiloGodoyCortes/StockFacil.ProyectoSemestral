@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GuiPrincipalAgregarCantidad extends JFrame implements ActionListener {
-    protected JButton TelevisorB;
-    protected JButton ComputadorPortatilB;
-    protected JButton CelularB;
-    protected JPanel botoneraP;
+    private JButton TelevisorB;
+    private JButton ComputadorPortatilB;
+    private JButton CelularB;
+    private JPanel botoneraP;
 
     public GuiPrincipalAgregarCantidad(String title) {
 

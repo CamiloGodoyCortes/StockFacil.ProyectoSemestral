@@ -13,22 +13,22 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class GuiNuevoTelevisor extends JFrame implements ActionListener {
-    protected JPanel marcaP;
-    protected JLabel marcaLB;
-    protected JTextField marcaTF;
+    private JPanel marcaP;
+    private JLabel marcaLB;
+    private JTextField marcaTF;
 
-    protected JPanel ModeloP;
-    protected JLabel ModeloLB;
-    protected JTextField ModeloTF;
+    private JPanel ModeloP;
+    private JLabel ModeloLB;
+    private JTextField ModeloTF;
 
-    protected JPanel tamañopulgadasP;
-    protected JLabel tamañopulgadasLB;
-    protected JTextField tamañopulgadasTF;
+    private JPanel tamañopulgadasP;
+    private JLabel tamañopulgadasLB;
+    private JTextField tamañopulgadasTF;
 
-    protected JPanel guardarP;
-    protected JButton guardarB;
+    private JPanel guardarP;
+    private JButton guardarB;
 
-    protected ProductoTelevisor productostv;
+    private ProductoTelevisor productostv;
 
     public GuiNuevoTelevisor(String titulo) {
 

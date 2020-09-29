@@ -17,23 +17,23 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
-    protected JPanel areaP;
-    protected JTextArea area;
-    protected JScrollPane areaScrollPane;
+    private JPanel areaP;
+    private JTextArea area;
+    private JScrollPane areaScrollPane;
 
-    protected JList listaTipo;
-    protected JList listaProductos;
-    protected JLabel counterLB;
-    protected JLabel modeloLB;
-    protected JPanel modeloP;
+    private JList listaTipo;
+    private JList listaProductos;
+    private JLabel counterLB;
+    private JLabel modeloLB;
+    private JPanel modeloP;
 
-    protected JPanel seleccionar1P;
-    protected JButton seleccionar1B;
+    private JPanel seleccionar1P;
+    private JButton seleccionar1B;
 
 
-    protected JPanel agregarP;
-    protected JTextField agregarTF;
-    protected JButton agregarB;
+    private JPanel agregarP;
+    private JTextField agregarTF;
+    private JButton agregarB;
 
     public GuiRetirarCantidadPC(String title) throws IOException {
 
