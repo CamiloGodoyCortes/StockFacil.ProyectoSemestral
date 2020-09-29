@@ -15,13 +15,13 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
     protected JScrollPane menuScrollPane;
 
 
-    protected JList listaProductos;
-    protected JLabel counterLB;
-    protected JLabel modeloLB;
-    protected JPanel modeloP;
+    private JList listaProductos;
+    private JLabel counterLB;
+    private JLabel modeloLB;
+    private JPanel modeloP;
+    private JPanel borrarP;
+    private JButton borrarB;
 
-    protected JPanel borrarP;
-    protected JButton borrarB;
     public GuiBorrarModeloCelular(String title) throws IOException {
 
         super(title);

@@ -21,19 +21,18 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
     private JTextArea area;
     private JScrollPane areaScrollPane;
 
-    private JList listaTipo;
     private JList listaProductos;
     private JLabel counterLB;
     private JLabel modeloLB;
     private JPanel modeloP;
 
-    private JPanel seleccionar1P;
-    private JButton seleccionar1B;
+    private JPanel seleccionarP;
+    private JButton seleccionarB;
 
 
-    private JPanel agregarP;
-    private JTextField agregarTF;
-    private JButton agregarB;
+    private JPanel retirarP;
+    private JTextField retirarTF;
+    private JButton retirarB;
 
     public GuiRetirarCantidadPC(String title) throws IOException {
 
@@ -42,8 +41,8 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
         this.setLayout(layout);
 
 
-        seleccionar1B = new JButton("Seleccionar");
-        seleccionar1P = new JPanel();
+        seleccionarB = new JButton("Seleccionar");
+        seleccionarP = new JPanel();
 
         modeloP = new JPanel();
         modeloLB = new JLabel("Modelos");
@@ -78,31 +77,31 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
         counterLB = new JLabel(String.valueOf(almacenPC.verCantidadproductosPC()));
 
         //Agregar
-        this.agregarP = new JPanel();
-        this.agregarB = new JButton("Retirar");
-        this.agregarTF = new JTextField(8);
+        this.retirarP = new JPanel();
+        this.retirarB = new JButton("Retirar");
+        this.retirarTF = new JTextField(8);
         //agregar los comportamientos a los obejtos de loa ventana
-        seleccionar1B.addActionListener(this);
-        agregarB.addActionListener(this);
+        seleccionarB.addActionListener(this);
+        retirarB.addActionListener(this);
 
         // agregar objetos a la ventana
         modeloP.add(modeloLB);
         modeloP.add(counterLB);
 
-        seleccionar1P.add(seleccionar1B);
+        seleccionarP.add(seleccionarB);
 
         areaP.add(areaScrollPane);
 
-        agregarP.add(agregarB);
-        agregarP.add(agregarTF);
+        retirarP.add(retirarB);
+        retirarP.add(retirarTF);
 
         this.add(modeloP);
         //para la barra
         this.add(menuScrollPane);
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        this.add(seleccionar1P);
+        this.add(seleccionarP);
         this.add(areaP);
-        this.add(agregarP);
+        this.add(retirarP);
 
         //Configuracion ventana
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -126,19 +125,19 @@ public class GuiRetirarCantidadPC extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == seleccionar1B) {
+        if (e.getSource() == seleccionarB) {
             int i = listaProductos.getSelectedIndex();
             mostrar(i);
         }
 
-        if (e.getSource() == agregarB) {
+        if (e.getSource() == retirarB) {
             int indice = listaProductos.getSelectedIndex();
             AlmacenPC almacenPC = new AlmacenPC();
             if (indice > -1) {
                 Validar validar=new Validar();
-                if (((validar.validarNumero(agregarTF.getText()))==true)) {
-                    if ((validar.cantidadError(agregarTF.getText(), almacenPC.productospc.get(indice).getCantidad()))==true){
-                        almacenPC.productospc.get(indice).restarProducto(Integer.parseInt(agregarTF.getText()));
+                if (((validar.validarNumero(retirarTF.getText()))==true)) {
+                    if ((validar.cantidadError(retirarTF.getText(), almacenPC.productospc.get(indice).getCantidad()))==true){
+                        almacenPC.productospc.get(indice).restarProducto(Integer.parseInt(retirarTF.getText()));
                     try {
                         ProductoPC productoPC = almacenPC.productospc.get(indice);
                         GestorJSONv5.borrarArchivoPC(almacenPC.productospc.get(indice).getModelo());

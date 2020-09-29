@@ -27,8 +27,8 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
     private JLabel modeloLB;
     private JPanel modeloP;
 
-    private JPanel seleccionar1P;
-    private JButton seleccionar1B;
+    private JPanel seleccionarP;
+    private JButton seleccionarB;
 
 
     private JPanel agregarP;
@@ -42,8 +42,8 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
         this.setLayout(layout);
 
 
-        seleccionar1B = new JButton("Seleccionar");
-        seleccionar1P = new JPanel();
+        seleccionarB = new JButton("Seleccionar");
+        seleccionarP = new JPanel();
 
         modeloP = new JPanel();
         modeloLB = new JLabel("Modelos");
@@ -82,14 +82,14 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
         this.agregarB = new JButton("Agregar");
         this.agregarTF = new JTextField(8);
         //agregar los comportamientos a los obejtos de loa ventana
-        seleccionar1B.addActionListener(this);
+        seleccionarB.addActionListener(this);
         agregarB.addActionListener(this);
 
         // agregar objetos a la ventana
         modeloP.add(modeloLB);
         modeloP.add(counterLB);
 
-        seleccionar1P.add(seleccionar1B);
+        seleccionarP.add(seleccionarB);
 
         areaP.add(areaScrollPane);
 
@@ -100,7 +100,7 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
         //para la barra
         this.add(menuScrollPane);
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        this.add(seleccionar1P);
+        this.add(seleccionarP);
         this.add(areaP);
         this.add(agregarP);
 
@@ -126,7 +126,7 @@ public class GuiAgregarCantidadCelular extends JFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == seleccionar1B) {
+        if (e.getSource() == seleccionarB) {
             int i = listaProductos.getSelectedIndex();
             mostrar(i);
         }
