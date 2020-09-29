@@ -1,4 +1,4 @@
-package Main;
+package main;
 
 import archivos.GestorJSONv5;
 import ventanas.GuiPrincipal;
