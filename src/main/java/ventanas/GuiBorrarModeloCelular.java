@@ -76,7 +76,7 @@ public class GuiBorrarModeloCelular extends JFrame implements ActionListener {
 
         //Configuracion ventana
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setSize(900, 200);
+        setSize(600, 200);
         setLocationRelativeTo(null);
         setResizable(false);
         this.setVisible(true);

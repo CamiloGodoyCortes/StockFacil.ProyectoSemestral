@@ -1,6 +1,7 @@
 package validar;
 
 public class Validar {
+    
     public boolean validarNumero(String cadena) {
         if (cadena.matches("[0-9]*")) {
             return true;

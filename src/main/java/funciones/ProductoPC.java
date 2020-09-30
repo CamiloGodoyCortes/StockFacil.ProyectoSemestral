@@ -40,6 +40,13 @@ public class ProductoPC {
     public void restarProducto(int resta) {
         this.cantidad = cantidad - resta;
     }
+
+
+
+
+
+
+
     public ArrayList<ComputadorPortatil> getComputadoresPortatiles() {
         return computadoresPortatiles;
     }

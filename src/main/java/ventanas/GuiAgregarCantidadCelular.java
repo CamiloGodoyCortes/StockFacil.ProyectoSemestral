@@ -1,6 +1,6 @@
 package ventanas;
 
-import validar.Validar;
+import validar.*;
 import archivos.GestorJSONv5;
 import funciones.AlmacenCelular;
 import funciones.ProductoCelular;
